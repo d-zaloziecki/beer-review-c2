@@ -29,24 +29,15 @@ const post = function () {
 
 $('.post-beer').on('click', post)
 
-const organize = function () {
-    let organizeButton = $('.organizeBeers').text();
-    if (organizeButton == "Organize beers 0-5") {
+let y = 1;
 
-        beers.sort(function (a, b) {
-            return a.rating - b.rating
-        })
-        renderBeers();
-        $('.organizeBeers').text("Organize beers 5-0")
-    }
-
-    else if (organizeButton == "Organize beers 5-0") {
-        beers.sort(function (a, b) {
-            return b.rating - a.rating
-        })
-        renderBeers();
-        $('.organizeBeers').text("Organize beers 0-5")
-    }
+const sortBeers = function () {
+    beers.sort(function (a, b) {
+        return a.rating * y - b.rating * y
+    })
+    renderBeers();
+    y = -y
 }
 
-$('.organizeBeers').on("click", organize)
+
+$('.organizeBeers').on("click", sortBeers)
